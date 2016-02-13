@@ -14,6 +14,7 @@
 		920D83551C6D89C700112371 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 920D83531C6D89C700112371 /* LaunchScreen.storyboard */; };
 		920D83601C6D89C700112371 /* StoreSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D835F1C6D89C700112371 /* StoreSearchTests.swift */; };
 		920D836B1C6D89C700112371 /* StoreSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D836A1C6D89C700112371 /* StoreSearchUITests.swift */; };
+		92BFE97F1C6F4B1300A248BC /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BFE97E1C6F4B1300A248BC /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		920D83661C6D89C700112371 /* StoreSearchUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StoreSearchUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		920D836A1C6D89C700112371 /* StoreSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSearchUITests.swift; sourceTree = "<group>"; };
 		920D836C1C6D89C700112371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92BFE97E1C6F4B1300A248BC /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				920D83511C6D89C700112371 /* Assets.xcassets */,
 				920D83531C6D89C700112371 /* LaunchScreen.storyboard */,
 				920D83561C6D89C700112371 /* Info.plist */,
+				92BFE97E1C6F4B1300A248BC /* SearchResult.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				920D834D1C6D89C700112371 /* SearchViewController.swift in Sources */,
+				92BFE97F1C6F4B1300A248BC /* SearchResult.swift in Sources */,
 				920D834B1C6D89C700112371 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +489,7 @@
 				920D83711C6D89C700112371 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		920D83721C6D89C700112371 /* Build configuration list for PBXNativeTarget "StoreSearchTests" */ = {
 			isa = XCConfigurationList;
@@ -493,6 +498,7 @@
 				920D83741C6D89C700112371 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		920D83751C6D89C700112371 /* Build configuration list for PBXNativeTarget "StoreSearchUITests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +507,7 @@
 				920D83771C6D89C700112371 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
