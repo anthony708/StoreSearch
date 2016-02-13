@@ -25,6 +25,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        searchBar.becomeFirstResponder()
         tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
         
         let cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
@@ -74,7 +75,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if searchResults.count == 0 {
-            return tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.nothingFoundCell, forIndexPath: indexPath)
+            return tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.nothingFoundCell, forIndexPath: indexPath) 
         } else {
         
             let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell) as! SearchResultCell
