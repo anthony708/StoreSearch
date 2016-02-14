@@ -44,17 +44,23 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         
         // The keyboard will hide until tap the search bar
-        searchBar.resignFirstResponder()
-        hasSearched = true
         
-        for i in 0...2 {
-            let searchResult = SearchResult()
-            searchResult.name = String(format: "Fake Result %d for", i, searchBar.text!)
-            searchResult.artistName = searchBar.text!
-            searchResults.append(searchResult)
+        if ((searchBar.text?.isEmpty) != nil) {
+            searchBar.resignFirstResponder()
+            hasSearched = true
+            
+            let url = urlWithSearchText(searchBar.text!)
+            if let jsonString = performStoreRequestWithURL(url) {
+                if let dictionary = parseJSON(jsonString) {
+                    print(dictionary)
+                    
+                    tableView.reloadData()
+                    return
+                }
+            }
         }
         
-        tableView.reloadData()
+        showNetworkError()
     }
     
     // status bar is unified with search bar
@@ -103,4 +109,40 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return indexPath
         }
     }
+    
+    func urlWithSearchText(searchText: String) -> NSURL {
+        
+        let escapeSearchText = searchText.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
+        let urlString = String(format: "http://itunes.apple.com/search?term=%@", escapeSearchText!)
+        let url = NSURL(string: urlString)
+        return url!
+    }
+    
+    func performStoreRequestWithURL(url: NSURL) -> String? {
+        if let data = try? String(contentsOfURL: url, encoding: NSUTF8StringEncoding) {
+            return data
+        } else {
+            print("Error")
+        }
+        return nil
+    }
+    
+    func parseJSON(data: String) -> [String: AnyObject]? {
+        
+        if let jsonData = data.dataUsingEncoding(NSUTF8StringEncoding) {
+            let json = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments)
+            return json as? [String : AnyObject]
+        }
+        
+        return nil
+    }
+    
+    func showNetworkError() {
+        let alert = UIAlertController(title: "Whoops...", message: "There was an error reading from the iTunes Store. Please try again.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK", style: .Default, handler: nil)
+        alert.addAction(action)
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
+    
 }
