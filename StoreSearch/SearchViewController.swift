@@ -11,6 +11,7 @@ import UIKit
 struct TableViewCellIdentifiers {
     static let searchResultCell = "SearchResultCell"
     static let nothingFoundCell = "NothingFoundCell"
+    static let loadingCell = "LoadingCell"
 }
 
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
@@ -20,6 +21,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var searchResults = [SearchResult]()
     var hasSearched = false
+    var isLoading = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let nothingFoundCellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
         tableView.registerNib(nothingFoundCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
+        
+        let loadingCellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
+        tableView.registerNib(loadingCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,6 +53,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if ((searchBar.text?.isEmpty) != nil) {
             searchBar.resignFirstResponder()
             hasSearched = true
+            isLoading = true
+            tableView.reloadData()
             
             let url = urlWithSearchText(searchBar.text!)
             if let jsonString = performStoreRequestWithURL(url) {
@@ -56,6 +63,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     
                     searchResults.sortInPlace(<)
                     
+                    isLoading = false
                     tableView.reloadData()
                     return
                 }
@@ -71,7 +79,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !hasSearched {
+        if isLoading {
+            return 1
+        } else if !hasSearched {
             return 0
         } else if searchResults.count == 0 {
             return 1
@@ -81,9 +91,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if searchResults.count == 0 {
-            return tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.nothingFoundCell, forIndexPath: indexPath) 
+        if isLoading {
+            let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.loadingCell, forIndexPath: indexPath) as UITableViewCell
+            let spinner = cell.viewWithTag(100) as! UIActivityIndicatorView
+            spinner.startAnimating()
+            return cell
+            
+        } else if searchResults.count == 0 {
+            return tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.nothingFoundCell, forIndexPath: indexPath)
+            
         } else {
         
             let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell) as! SearchResultCell
@@ -109,7 +125,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if searchResults.count == 0 {
+        if searchResults.count == 0 || isLoading {
             return nil
         } else {
             return indexPath
@@ -119,7 +135,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func urlWithSearchText(searchText: String) -> NSURL {
         
         let escapeSearchText = searchText.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
-        let urlString = String(format: "http://itunes.apple.com/search?term=%@", escapeSearchText!)
+        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=200", escapeSearchText!)
         let url = NSURL(string: urlString)
         return url!
     }
