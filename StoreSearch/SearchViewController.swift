@@ -52,25 +52,34 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if ((searchBar.text?.isEmpty) != nil) {
             searchBar.resignFirstResponder()
-            hasSearched = true
+            
             isLoading = true
             tableView.reloadData()
             
-            let url = urlWithSearchText(searchBar.text!)
-            if let jsonString = performStoreRequestWithURL(url) {
-                if let dictionary = parseJSON(jsonString) {
-                    searchResults = parseDictionary(dictionary)
-                    
-                    searchResults.sortInPlace(<)
-                    
-                    isLoading = false
-                    tableView.reloadData()
-                    return
+            hasSearched = true
+            
+            let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+            
+            dispatch_async(queue) {
+                let url = self.urlWithSearchText(searchBar.text!)
+                
+                if let jsonString = self.performStoreRequestWithURL(url) {
+                    if let dictionary = self.parseJSON(jsonString) {
+                        self.searchResults = self.parseDictionary(dictionary)
+                        self.searchResults.sortInPlace(<)
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.isLoading = false
+                            self.tableView.reloadData()
+                        }
+                        return
+                    }
+                }
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.showNetworkError()
                 }
             }
         }
-        
-        showNetworkError()
     }
     
     // status bar is unified with search bar
