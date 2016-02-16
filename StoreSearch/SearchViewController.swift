@@ -58,27 +58,41 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             hasSearched = true
             
-            let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+            let url = self.urlWithSearchText(searchBar.text!)
             
-            dispatch_async(queue) {
-                let url = self.urlWithSearchText(searchBar.text!)
+            let session = NSURLSession.sharedSession()
+            
+            let dataTask = session.dataTaskWithURL(url, completionHandler: { data, response, error in
                 
-                if let jsonString = self.performStoreRequestWithURL(url) {
-                    if let dictionary = self.parseJSON(jsonString) {
-                        self.searchResults = self.parseDictionary(dictionary)
-                        self.searchResults.sortInPlace(<)
-                        
-                        dispatch_async(dispatch_get_main_queue()) {
-                            self.isLoading = false
-                            self.tableView.reloadData()
+                if let error = error {
+                    print("Failure!\(error)")
+                } else if let httpResponse = response as? NSHTTPURLResponse {
+                    if httpResponse.statusCode == 200 {
+                        if let dictionary = self.parseJSON(data!) {
+                            self.searchResults = self.parseDictionary(dictionary)
+                            self.searchResults.sortInPlace(<)
+                            
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.isLoading = false
+                                self.tableView.reloadData()
+                            }
+                            return
                         }
-                        return
+                    } else {
+                        print("Failure!\(response!)")
                     }
+
                 }
+                
                 dispatch_async(dispatch_get_main_queue()) {
+                    self.hasSearched = false
+                    self.isLoading = false
+                    self.tableView.reloadData()
                     self.showNetworkError()
                 }
-            }
+            })
+            
+            dataTask.resume()
         }
     }
     
@@ -149,23 +163,19 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return url!
     }
     
-    func performStoreRequestWithURL(url: NSURL) -> String? {
-        if let data = try? String(contentsOfURL: url, encoding: NSUTF8StringEncoding) {
-            return data
-        } else {
-            print("Error")
-        }
-        return nil
-    }
-    
-    func parseJSON(data: String) -> [String: AnyObject]? {
+    func parseJSON(data: NSData) -> [String: AnyObject]? {
         
-        if let jsonData = data.dataUsingEncoding(NSUTF8StringEncoding) {
-            let json = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: .AllowFragments)
-            return json as? [String : AnyObject]
-        }
-        
-        return nil
+//        var error: NSError?
+//        if let jsonData = data.dataUsingEncoding(NSUTF8StringEncoding) {
+        let json = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String : AnyObject]
+        return json
+//        } else if let error = error {
+//            print("JSON Error: \(error)")
+//        } else {
+//            print("Unknown JSON Error")
+//        }
+//        
+//        return nil
     }
     
     func showNetworkError() {
