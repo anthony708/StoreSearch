@@ -22,6 +22,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var searchResults = [SearchResult]()
     var hasSearched = false
     var isLoading = false
+    var dataTask: NSURLSessionDataTask?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             searchBar.resignFirstResponder()
             
             isLoading = true
+            
+            dataTask?.cancel()
             tableView.reloadData()
             
             hasSearched = true
@@ -62,10 +65,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             let session = NSURLSession.sharedSession()
             
-            let dataTask = session.dataTaskWithURL(url, completionHandler: { data, response, error in
+            dataTask = session.dataTaskWithURL(url, completionHandler: { data, response, error in
                 
                 if let error = error {
                     print("Failure!\(error)")
+                    if error.code == -999 { return }
                 } else if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode == 200 {
                         if let dictionary = self.parseJSON(data!) {
@@ -92,7 +96,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             })
             
-            dataTask.resume()
+            dataTask?.resume()
         }
     }
     
