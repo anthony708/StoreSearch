@@ -18,6 +18,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    @IBAction func segmentChanged(sender: UISegmentedControl) {
+        
+        performSearch()
+    }
     
     var searchResults = [SearchResult]()
     var hasSearched = false
@@ -29,7 +35,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // Do any additional setup after loading the view, typically from a nib.
         
         searchBar.becomeFirstResponder()
-        tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
         
         let cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
@@ -48,6 +54,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        performSearch()
+    }
+    
+    func performSearch() {
         
         // The keyboard will hide until tap the search bar
         
@@ -61,7 +71,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             hasSearched = true
             
-            let url = self.urlWithSearchText(searchBar.text!)
+            let url = self.urlWithSearchText(searchBar.text!, category: segmentedControl.selectedSegmentIndex)
             
             let session = NSURLSession.sharedSession()
             
@@ -159,27 +169,27 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    func urlWithSearchText(searchText: String) -> NSURL {
+    func urlWithSearchText(searchText: String, category: Int) -> NSURL {
+        
+        var entityName: String
+        switch category {
+        case 1: entityName = "musicTrack"
+        case 2: entityName = "software"
+        case 3: entityName = "ebook"
+        default: entityName = ""
+        }
         
         let escapeSearchText = searchText.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.alphanumericCharacterSet())
-        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=200", escapeSearchText!)
+        let urlString = String(format: "http://itunes.apple.com/search?term=%@&limit=200&entity=%@", escapeSearchText!, entityName)
         let url = NSURL(string: urlString)
         return url!
     }
     
     func parseJSON(data: NSData) -> [String: AnyObject]? {
         
-//        var error: NSError?
-//        if let jsonData = data.dataUsingEncoding(NSUTF8StringEncoding) {
         let json = try! NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments) as? [String : AnyObject]
         return json
-//        } else if let error = error {
-//            print("JSON Error: \(error)")
-//        } else {
-//            print("Unknown JSON Error")
-//        }
-//        
-//        return nil
+
     }
     
     func showNetworkError() {

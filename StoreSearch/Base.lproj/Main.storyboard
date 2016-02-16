@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--SearchViewController-->
@@ -34,21 +35,48 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="whv-Rs-xFx"/>
                                 </connections>
                             </searchBar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pfp-aV-tnf">
+                                <rect key="frame" x="-1" y="64" width="600" height="44"/>
+                                <animations/>
+                                <items>
+                                    <navigationItem id="FHh-fp-7u3">
+                                        <nil key="title"/>
+                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ouf-bv-sAB">
+                                            <rect key="frame" x="150" y="7" width="300" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <animations/>
+                                            <segments>
+                                                <segment title="All"/>
+                                                <segment title="Music"/>
+                                                <segment title="Software"/>
+                                                <segment title="E-book"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="segmentChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="fA2-wT-aTe"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="WAs-FR-a1t" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5hY-Np-cZT"/>
                             <constraint firstItem="Qc5-Zk-9Pw" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="IpE-ri-Y51"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pfp-aV-tnf" secondAttribute="trailing" constant="-19" id="Jal-Na-7OH"/>
+                            <constraint firstItem="pfp-aV-tnf" firstAttribute="top" secondItem="Qc5-Zk-9Pw" secondAttribute="bottom" id="OV8-V7-vnv"/>
                             <constraint firstItem="Qc5-Zk-9Pw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="PEf-8u-YKj"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="WAs-FR-a1t" secondAttribute="bottom" id="XBf-Ov-Xqz"/>
                             <constraint firstItem="WAs-FR-a1t" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mVB-lA-CoU"/>
                             <constraint firstAttribute="trailing" secondItem="WAs-FR-a1t" secondAttribute="trailing" id="oAX-Qa-Sno"/>
                             <constraint firstAttribute="trailing" secondItem="Qc5-Zk-9Pw" secondAttribute="trailing" id="q8h-qT-NZq"/>
+                            <constraint firstItem="pfp-aV-tnf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-21" id="uKl-CD-Jj2"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="Qc5-Zk-9Pw" id="93I-SE-dVO"/>
+                        <outlet property="segmentedControl" destination="ouf-bv-sAB" id="am5-cz-aUA"/>
                         <outlet property="tableView" destination="WAs-FR-a1t" id="6aR-cl-aO5"/>
                     </connections>
                 </viewController>
