@@ -8,12 +8,6 @@
 
 import UIKit
 
-struct TableViewCellIdentifiers {
-    static let searchResultCell = "SearchResultCell"
-    static let nothingFoundCell = "NothingFoundCell"
-    static let loadingCell = "LoadingCell"
-}
-
 class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
@@ -29,23 +23,31 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var hasSearched = false
     var isLoading = false
     var dataTask: NSURLSessionDataTask?
+    
+    struct TableViewCellIdentifiers {
+        static let searchResultCell = "SearchResultCell"
+        static let nothingFoundCell = "NothingFoundCell"
+        static let loadingCell = "LoadingCell"
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        searchBar.becomeFirstResponder()
         tableView.contentInset = UIEdgeInsets(top: 108, left: 0, bottom: 0, right: 0)
+        tableView.rowHeight = 80
         
-        let cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
+        var cellNib = UINib(nibName: TableViewCellIdentifiers.searchResultCell, bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.searchResultCell)
         tableView.rowHeight = 80
         
-        let nothingFoundCellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
-        tableView.registerNib(nothingFoundCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
+        cellNib = UINib(nibName: TableViewCellIdentifiers.nothingFoundCell, bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.nothingFoundCell)
         
-        let loadingCellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
-        tableView.registerNib(loadingCellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
+        cellNib = UINib(nibName: TableViewCellIdentifiers.loadingCell, bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: TableViewCellIdentifiers.loadingCell)
+        
+        searchBar.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,12 +63,12 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // The keyboard will hide until tap the search bar
         
-        if ((searchBar.text?.isEmpty) != nil) {
+        if !searchBar.text!.isEmpty {
             searchBar.resignFirstResponder()
             
-            isLoading = true
-            
             dataTask?.cancel()
+            
+            isLoading = true
             tableView.reloadData()
             
             hasSearched = true
@@ -141,18 +143,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
             let cell = tableView.dequeueReusableCellWithIdentifier(TableViewCellIdentifiers.searchResultCell) as! SearchResultCell
         
-            if searchResults.count == 0 {
-                cell.nameLabel?.text = "(Nothing Found)"
-                cell.artistNameLabel?.text = ""
-            } else {
-                let searchResult = searchResults[indexPath.row]
-                cell.nameLabel?.text = searchResult.name
-                if searchResult.artistName.isEmpty {
-                    cell.artistNameLabel.text = "Unknown"
-                } else {
-                    cell.artistNameLabel.text = String(format: "%@ (%@)", searchResult.artistName, kindForDisplay(searchResult.kind))
-                }
-            }
+            let searchResult = searchResults[indexPath.row]
+            cell.configureForSearchResult(searchResult)
+ 
             return cell
         }
     }
@@ -201,6 +194,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func parseDictionary(dictionary: [String: AnyObject]) -> [SearchResult]{
+        
+        var searchResults = [SearchResult]()
         
         if let array: AnyObject = dictionary["results"] {
             for resultDict in array as! [AnyObject] {
@@ -314,19 +309,4 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return searchResult
     }
     
-    func kindForDisplay(kind: String) -> String {
-        switch kind {
-        case "album" : return "Album"
-        case "audiobook": return "Audio Book"
-        case "book": return "Book"
-        case "ebook": return "E-Book"
-        case "feature-movie": return "Movie"
-        case "music-video": return "Music Video"
-        case "podcast": return "Podcast"
-        case "software": return "App"
-        case "song": return "Song"
-        case "tv-episode": return "TV Episode"
-        default: return kind
-        }
-    }
 }
