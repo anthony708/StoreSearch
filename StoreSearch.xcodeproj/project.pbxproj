@@ -14,6 +14,8 @@
 		920D83601C6D89C700112371 /* StoreSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D835F1C6D89C700112371 /* StoreSearchTests.swift */; };
 		920D836B1C6D89C700112371 /* StoreSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920D836A1C6D89C700112371 /* StoreSearchUITests.swift */; };
 		92546C891C745BBA00E0918D /* UIImageView+DownloadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92546C881C745BBA00E0918D /* UIImageView+DownloadImage.swift */; };
+		92546C8B1C7489B900E0918D /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92546C8A1C7489B900E0918D /* DetailViewController.swift */; };
+		92546C8D1C74914F00E0918D /* DimmingPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92546C8C1C74914F00E0918D /* DimmingPresentationController.swift */; };
 		92893A341C71EB8E009D3B65 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92893A331C71EB8E009D3B65 /* LoadingCell.xib */; };
 		92BFE97F1C6F4B1300A248BC /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BFE97E1C6F4B1300A248BC /* SearchResult.swift */; };
 		92BFE9811C6F51E600A248BC /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92BFE9801C6F51E500A248BC /* SearchResultCell.xib */; };
@@ -52,6 +54,8 @@
 		920D836A1C6D89C700112371 /* StoreSearchUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSearchUITests.swift; sourceTree = "<group>"; };
 		920D836C1C6D89C700112371 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92546C881C745BBA00E0918D /* UIImageView+DownloadImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+DownloadImage.swift"; sourceTree = "<group>"; };
+		92546C8A1C7489B900E0918D /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		92546C8C1C74914F00E0918D /* DimmingPresentationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingPresentationController.swift; sourceTree = "<group>"; };
 		92893A331C71EB8E009D3B65 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		92BFE97E1C6F4B1300A248BC /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		92BFE9801C6F51E500A248BC /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
@@ -114,10 +118,12 @@
 				92BFE9821C6F554C00A248BC /* SearchResultCell.swift */,
 				92BFE9841C6F56E600A248BC /* NothingFoundCell.xib */,
 				92893A331C71EB8E009D3B65 /* LoadingCell.xib */,
+				92546C881C745BBA00E0918D /* UIImageView+DownloadImage.swift */,
+				92546C8A1C7489B900E0918D /* DetailViewController.swift */,
+				92546C8C1C74914F00E0918D /* DimmingPresentationController.swift */,
 				920D834E1C6D89C700112371 /* Main.storyboard */,
 				920D83511C6D89C700112371 /* Assets.xcassets */,
 				920D83561C6D89C700112371 /* Info.plist */,
-				92546C881C745BBA00E0918D /* UIImageView+DownloadImage.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -277,8 +283,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				920D834D1C6D89C700112371 /* SearchViewController.swift in Sources */,
+				92546C8D1C74914F00E0918D /* DimmingPresentationController.swift in Sources */,
 				92BFE97F1C6F4B1300A248BC /* SearchResult.swift in Sources */,
 				92BFE9831C6F554C00A248BC /* SearchResultCell.swift in Sources */,
+				92546C8B1C7489B900E0918D /* DetailViewController.swift in Sources */,
 				920D834B1C6D89C700112371 /* AppDelegate.swift in Sources */,
 				92546C891C745BBA00E0918D /* UIImageView+DownloadImage.swift in Sources */,
 			);
