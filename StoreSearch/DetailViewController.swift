@@ -45,6 +45,8 @@ class DetailViewController: UIViewController, UIViewControllerTransitioningDeleg
         if searchResult != nil {
             updateUI()
         }
+        
+        view.backgroundColor = UIColor.clearColor()
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,4 +103,11 @@ class DetailViewController: UIViewController, UIViewControllerTransitioningDeleg
         downloadTask?.cancel()
     }
     
+    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return BounceAnimationController()
+    }
+    
+    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return SlideOutAnimationController()
+    }
 }
