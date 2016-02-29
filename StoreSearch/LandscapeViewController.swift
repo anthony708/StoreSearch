@@ -12,12 +12,17 @@ class LandscapeViewController: UIViewController, UIScrollViewDelegate {
     
     var searchResults = [SearchResult]()
     private var firstTime = true
+    private var downloadTasks = [NSURLSessionDownloadTask]()
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var pageControl: UIPageControl!
     
     deinit {
         print("deinit \(self)")
+        
+        for task in downloadTasks {
+            task.cancel()
+        }
     }
 
     @IBAction func pageChanged(sender: UIPageControl) {
@@ -103,15 +108,16 @@ class LandscapeViewController: UIViewController, UIScrollViewDelegate {
         var column = 0
         var x = marginX
         
-        for (index, searchResult) in searchResults.enumerate() {
+        for (_, searchResult) in searchResults.enumerate() {
             
-            let button = UIButton(type: .System) as UIButton
-            button.backgroundColor = UIColor.whiteColor()
-            button.setTitle("\(index)", forState: .Normal)
+            let button = UIButton(type: .Custom) as UIButton
+            button.setBackgroundImage(UIImage(named: "LandscapeButton"), forState: .Normal)
             
             button.frame = CGRect(x: x + paddingHorz, y: marginY + CGFloat(row) * itemHeight + paddingVert, width: buttonWidth, height: buttonHeight)
             
             scrollView.addSubview(button)
+            
+            downloadImageForSearchResult(searchResult, andPlaceOnButton: button)
             
             ++row
             if row == rowsPerPage {
@@ -131,7 +137,7 @@ class LandscapeViewController: UIViewController, UIScrollViewDelegate {
         
         scrollView.contentSize = CGSize(width: CGFloat(numPages) * scrollViewWidth, height: scrollView.bounds.size.height)
         
-        print("Number of pages: \(numPages)")
+//        print("Number of pages: \(numPages)")
         
         pageControl.numberOfPages = numPages
         pageControl.currentPage = 0
@@ -143,4 +149,26 @@ class LandscapeViewController: UIViewController, UIScrollViewDelegate {
         pageControl.currentPage = currentPage
     }
     
+    private func downloadImageForSearchResult(searchResult: SearchResult, andPlaceOnButton button: UIButton) {
+        if let url = NSURL(string: searchResult.artworkURL60) {
+            let session = NSURLSession.sharedSession()
+            let downloadTask = session.downloadTaskWithURL(url, completionHandler: {
+                [weak button] url, response, error in
+                if error == nil && url != nil {
+                    if let data = NSData(contentsOfURL: url!) {
+                        if let image = UIImage(data: data) {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                if let button = button {
+                                    button.setImage(image, forState: .Normal)
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+            
+            downloadTask.resume()
+            downloadTasks.append(downloadTask)
+        }
+    }
 }
