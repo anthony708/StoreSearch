@@ -85,6 +85,38 @@
             </objects>
             <point key="canvasLocation" x="337" y="387"/>
         </scene>
+        <!--Landscape View Controller-->
+        <scene sceneID="kBK-ya-ZFy">
+            <objects>
+                <viewController storyboardIdentifier="LandscapeViewController" id="Fs0-u2-WIy" customClass="LandscapeViewController" customModule="StoreSearch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QeJ-qU-Xy3"/>
+                        <viewControllerLayoutGuide type="bottom" id="0JZ-nf-hTe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9bb-fA-UnW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We're in landsacpe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cch-AY-W5w">
+                                <rect key="frame" x="228" y="289" width="145" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Cch-AY-W5w" firstAttribute="centerX" secondItem="9bb-fA-UnW" secondAttribute="centerX" id="XsF-HI-nkk"/>
+                            <constraint firstItem="Cch-AY-W5w" firstAttribute="centerY" secondItem="9bb-fA-UnW" secondAttribute="centerY" id="tCB-AA-aJP"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aS2-Fb-uts" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="337" y="1100"/>
+        </scene>
         <!--Detail View Controller-->
         <scene sceneID="ytm-EL-Tqg">
             <objects>
@@ -220,7 +252,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Clz-3T-QzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="337" y="1086"/>
+            <point key="canvasLocation" x="1065" y="387"/>
         </scene>
     </scenes>
     <resources>

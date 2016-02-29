@@ -10,6 +10,13 @@ import UIKit
 
 class DetailViewController: UIViewController, UIViewControllerTransitioningDelegate, UIGestureRecognizerDelegate {
     
+    enum AnimationStyle {
+        case Slide
+        case Fade
+    }
+    
+    var dismissAnimationStyle = AnimationStyle.Fade
+    
     var searchResult: SearchResult!
     var downloadTask: NSURLSessionDownloadTask?
     
@@ -23,6 +30,7 @@ class DetailViewController: UIViewController, UIViewControllerTransitioningDeleg
     @IBOutlet weak var priceButton: UIButton!
     
     @IBAction func close() {
+        dismissAnimationStyle = .Slide
         dismissViewControllerAnimated(true, completion: nil)
     }
     
@@ -108,6 +116,11 @@ class DetailViewController: UIViewController, UIViewControllerTransitioningDeleg
     }
     
     func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return SlideOutAnimationController()
+        switch dismissAnimationStyle {
+        case .Slide:
+            return SlideOutAnimationController()
+        case .Fade:
+            return FadeOutAnimationController()
+        }
     }
 }
