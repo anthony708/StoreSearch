@@ -59,6 +59,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func performSearch() {
+        
+        if let controller = self.landscapeViewController {
+            controller.searchResultsReceived()
+        }
+        
         if let category = Search.Category(rawValue: segmentedControl.selectedSegmentIndex) {
             search.performSearchForText(searchBar.text!, category: category, completion: { success in
                 if !success {
