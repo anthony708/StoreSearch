@@ -201,6 +201,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             coordinator.animateAlongsideTransition({ _ in
                 controller.view.alpha = 0
+                
+                if self.presentationController != nil {
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }
             }, completion: { _ in
                 controller.view.removeFromSuperview()
                 controller.removeFromParentViewController()
