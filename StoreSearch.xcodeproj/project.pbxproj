@@ -16,6 +16,7 @@
 		922080E11C867B3C00E75D78 /* NothingFoundCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922080E31C867B3C00E75D78 /* NothingFoundCell.xib */; };
 		922080E51C867E2900E75D78 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922080E71C867E2900E75D78 /* LoadingCell.xib */; };
 		922080EF1C86828B00E75D78 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 922080ED1C86828B00E75D78 /* Localizable.strings */; };
+		922080F21C868A1400E75D78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 922080F41C868A1400E75D78 /* InfoPlist.strings */; };
 		92242A891C846FDC0025A0D2 /* FadeOutAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92242A881C846FDC0025A0D2 /* FadeOutAnimationController.swift */; };
 		923E204B1C75FB960008B081 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923E204A1C75FB960008B081 /* GradientView.swift */; };
 		923E204D1C776F990008B081 /* BounceAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923E204C1C776F990008B081 /* BounceAnimationController.swift */; };
@@ -66,6 +67,8 @@
 		922080E91C867E3900E75D78 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LoadingCell.strings"; sourceTree = "<group>"; };
 		922080EB1C867EEA00E75D78 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		922080EE1C86828B00E75D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		922080F31C868A1400E75D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		922080F51C868A1600E75D78 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		92242A881C846FDC0025A0D2 /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
 		923E204A1C75FB960008B081 /* GradientView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		923E204C1C776F990008B081 /* BounceAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BounceAnimationController.swift; sourceTree = "<group>"; };
@@ -148,6 +151,7 @@
 				92242A881C846FDC0025A0D2 /* FadeOutAnimationController.swift */,
 				92F6A4C41C852AE90006DEBA /* Search.swift */,
 				922080EC1C86826500E75D78 /* Supporting Files */,
+				922080F41C868A1400E75D78 /* InfoPlist.strings */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -287,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				920D83521C6D89C700112371 /* Assets.xcassets in Resources */,
+				922080F21C868A1400E75D78 /* InfoPlist.strings in Resources */,
 				922080EF1C86828B00E75D78 /* Localizable.strings in Resources */,
 				922080E51C867E2900E75D78 /* LoadingCell.xib in Resources */,
 				92BFE9811C6F51E600A248BC /* SearchResultCell.xib in Resources */,
@@ -397,6 +402,15 @@
 				922080EE1C86828B00E75D78 /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		922080F41C868A1400E75D78 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				922080F31C868A1400E75D78 /* Base */,
+				922080F51C868A1600E75D78 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
