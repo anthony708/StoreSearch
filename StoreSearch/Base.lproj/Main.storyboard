@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1SC-Em-CVi">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
@@ -123,7 +123,37 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aS2-Fb-uts" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="337" y="1100"/>
+            <point key="canvasLocation" x="-439" y="939"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9rX-Hd-xfx">
+            <objects>
+                <navigationController id="hPU-WJ-uZA" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ax9-8T-ssi">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <animations/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="8bL-p1-Xws" kind="relationship" relationship="rootViewController" id="RCi-w7-uDJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jWO-Bt-zUD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1141" y="-85"/>
+        </scene>
+        <!--Split View Controller-->
+        <scene sceneID="JA8-dY-ENs">
+            <objects>
+                <splitViewController id="1SC-Em-CVi" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="masterViewController" id="5Iw-Sn-xo0"/>
+                        <segue destination="hPU-WJ-uZA" kind="relationship" relationship="detailViewController" id="Ny1-tw-qlo"/>
+                    </connections>
+                </splitViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Tu4-2e-oIO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-439" y="-85"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="ytm-EL-Tqg">
@@ -248,6 +278,7 @@
                             <constraint firstItem="zyb-oj-5XV" firstAttribute="centerX" secondItem="lS9-yJ-nNi" secondAttribute="centerX" id="bFx-Yh-gYm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="RKy-HF-uo1"/>
                     <connections>
                         <outlet property="artistNameLabel" destination="qMj-uf-xHi" id="Hpe-Ka-7ZF"/>
                         <outlet property="artworkImageView" destination="opJ-sP-CYM" id="Ge0-Dk-VoE"/>
@@ -260,14 +291,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Clz-3T-QzP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1065" y="387"/>
+            <point key="canvasLocation" x="1141" y="939"/>
         </scene>
     </scenes>
     <resources>
         <image name="CloseButton" width="15" height="15"/>
-        <image name="PriceButton" width="11" height="11"/>
+        <image name="PriceButton" width="11" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="VP4-m7-9eP"/>
+        <segue reference="yxG-WA-8e5"/>
     </inferredMetricsTieBreakers>
 </document>
