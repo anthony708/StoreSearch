@@ -28,6 +28,7 @@
 		92BFE97F1C6F4B1300A248BC /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BFE97E1C6F4B1300A248BC /* SearchResult.swift */; };
 		92BFE9811C6F51E600A248BC /* SearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92BFE9801C6F51E500A248BC /* SearchResultCell.xib */; };
 		92BFE9831C6F554C00A248BC /* SearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BFE9821C6F554C00A248BC /* SearchResultCell.swift */; };
+		92C845791C86DB7900222E38 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C845781C86DB7900222E38 /* MenuViewController.swift */; };
 		92F6A4C51C852AE90006DEBA /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F6A4C41C852AE90006DEBA /* Search.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +67,6 @@
 		922080E61C867E2900E75D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LoadingCell.xib; sourceTree = "<group>"; };
 		922080E91C867E3900E75D78 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LoadingCell.strings"; sourceTree = "<group>"; };
 		922080EB1C867EEA00E75D78 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
-		922080EE1C86828B00E75D78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		922080F31C868A1400E75D78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		922080F51C868A1600E75D78 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		92242A881C846FDC0025A0D2 /* FadeOutAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeOutAnimationController.swift; sourceTree = "<group>"; };
@@ -80,6 +80,9 @@
 		92BFE97E1C6F4B1300A248BC /* SearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		92BFE9801C6F51E500A248BC /* SearchResultCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchResultCell.xib; sourceTree = "<group>"; };
 		92BFE9821C6F554C00A248BC /* SearchResultCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultCell.swift; sourceTree = "<group>"; };
+		92C845781C86DB7900222E38 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		92C8457A1C86E3C500222E38 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		92C8457C1C86E40C00222E38 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		92F6A4C41C852AE90006DEBA /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,26 +135,25 @@
 			isa = PBXGroup;
 			children = (
 				920D834A1C6D89C700112371 /* AppDelegate.swift */,
-				920D834C1C6D89C700112371 /* SearchViewController.swift */,
-				92BFE97E1C6F4B1300A248BC /* SearchResult.swift */,
-				92BFE9801C6F51E500A248BC /* SearchResultCell.xib */,
-				92BFE9821C6F554C00A248BC /* SearchResultCell.swift */,
-				922080E31C867B3C00E75D78 /* NothingFoundCell.xib */,
-				922080E71C867E2900E75D78 /* LoadingCell.xib */,
-				92546C881C745BBA00E0918D /* UIImageView+DownloadImage.swift */,
+				920D83511C6D89C700112371 /* Assets.xcassets */,
+				923E204C1C776F990008B081 /* BounceAnimationController.swift */,
 				92546C8A1C7489B900E0918D /* DetailViewController.swift */,
 				92546C8C1C74914F00E0918D /* DimmingPresentationController.swift */,
-				920D834E1C6D89C700112371 /* Main.storyboard */,
-				920D83511C6D89C700112371 /* Assets.xcassets */,
-				920D83561C6D89C700112371 /* Info.plist */,
-				923E204A1C75FB960008B081 /* GradientView.swift */,
-				923E204C1C776F990008B081 /* BounceAnimationController.swift */,
-				923E204E1C77734F0008B081 /* SlideOutAnimationController.swift */,
-				923E20521C777C2F0008B081 /* LandscapeViewController.swift */,
 				92242A881C846FDC0025A0D2 /* FadeOutAnimationController.swift */,
+				923E204A1C75FB960008B081 /* GradientView.swift */,
+				923E20521C777C2F0008B081 /* LandscapeViewController.swift */,
+				922080E71C867E2900E75D78 /* LoadingCell.xib */,
+				920D834E1C6D89C700112371 /* Main.storyboard */,
+				92C845781C86DB7900222E38 /* MenuViewController.swift */,
+				922080E31C867B3C00E75D78 /* NothingFoundCell.xib */,
 				92F6A4C41C852AE90006DEBA /* Search.swift */,
+				92BFE97E1C6F4B1300A248BC /* SearchResult.swift */,
+				92BFE9821C6F554C00A248BC /* SearchResultCell.swift */,
+				92BFE9801C6F51E500A248BC /* SearchResultCell.xib */,
+				920D834C1C6D89C700112371 /* SearchViewController.swift */,
+				923E204E1C77734F0008B081 /* SlideOutAnimationController.swift */,
 				922080EC1C86826500E75D78 /* Supporting Files */,
-				922080F41C868A1400E75D78 /* InfoPlist.strings */,
+				92546C881C745BBA00E0918D /* UIImageView+DownloadImage.swift */,
 			);
 			path = StoreSearch;
 			sourceTree = "<group>";
@@ -177,6 +179,8 @@
 		922080EC1C86826500E75D78 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				920D83561C6D89C700112371 /* Info.plist */,
+				922080F41C868A1400E75D78 /* InfoPlist.strings */,
 				922080ED1C86828B00E75D78 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -324,6 +328,7 @@
 				92F6A4C51C852AE90006DEBA /* Search.swift in Sources */,
 				920D834D1C6D89C700112371 /* SearchViewController.swift in Sources */,
 				92546C8D1C74914F00E0918D /* DimmingPresentationController.swift in Sources */,
+				92C845791C86DB7900222E38 /* MenuViewController.swift in Sources */,
 				92242A891C846FDC0025A0D2 /* FadeOutAnimationController.swift in Sources */,
 				92BFE97F1C6F4B1300A248BC /* SearchResult.swift in Sources */,
 				92BFE9831C6F554C00A248BC /* SearchResultCell.swift in Sources */,
@@ -399,7 +404,8 @@
 		922080ED1C86828B00E75D78 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				922080EE1C86828B00E75D78 /* en */,
+				92C8457A1C86E3C500222E38 /* zh-Hans */,
+				92C8457C1C86E40C00222E38 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
