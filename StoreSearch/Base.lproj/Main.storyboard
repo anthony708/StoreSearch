@@ -320,6 +320,15 @@
                                         <variation key="heightClass=regular-widthClass=regular" constant="20"/>
                                     </constraint>
                                 </constraints>
+                                <variation key="heightClass=compact-widthClass=regular">
+                                    <mask key="subviews">
+                                        <exclude reference="61H-FE-Psm"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="CRE-cx-Zq8"/>
+                                        <exclude reference="oSt-a0-uXl"/>
+                                    </mask>
+                                </variation>
                                 <variation key="heightClass=regular-widthClass=regular">
                                     <mask key="subviews">
                                         <exclude reference="61H-FE-Psm"/>
@@ -334,7 +343,9 @@
                         <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="zyb-oj-5XV" firstAttribute="centerY" secondItem="lS9-yJ-nNi" secondAttribute="centerY" id="XmM-am-hpm"/>
+                            <constraint firstItem="zyb-oj-5XV" firstAttribute="centerY" secondItem="lS9-yJ-nNi" secondAttribute="centerY" id="XmM-am-hpm">
+                                <variation key="heightClass=compact-widthClass=regular" constant="-20"/>
+                            </constraint>
                             <constraint firstItem="zyb-oj-5XV" firstAttribute="centerX" secondItem="lS9-yJ-nNi" secondAttribute="centerX" id="bFx-Yh-gYm"/>
                         </constraints>
                     </view>
